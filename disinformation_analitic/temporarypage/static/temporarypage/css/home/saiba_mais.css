@@ -1,0 +1,36 @@
+.saiba_mais-bg {
+    background: var(--cor-11);;
+}
+
+.saiba_mais-conteudo {
+    align-self: end;
+    padding-bottom: 90px;
+}
+
+.saiba_mais h1 {
+    padding-top: 60px;
+    margin-top: 35px;
+    margin-bottom: 60px;
+    color: var(--cor-1);
+    text-align: center;
+}
+
+.saiba_mais p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 800px) {
+    .saiba_mais-bg {
+        padding-top: 10px;
+    }
+
+    .saiba_mais-conteudo {
+        padding-bottom: 1px;
+    }
+    .saiba_mais h1 {
+        padding-top: 0;
+        margin-bottom: 16px;
+    }
+}
+

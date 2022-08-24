@@ -16,8 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework import routers 
+#from books.api import viewsets as booksviewsets
+from frontendapi import views
+route = routers.DefaultRouter()
+#route.register(r'our_site/', views.DisinformationViewSet, basename='our_site')
+route.register(r'disinformation/', views.DisinformationViewSet, basename='disinformation')
+route.register(r'disinformationget/', views.DisinformationGetViewSet, basename='disinformationget')
+route.register(r'user/', views.UserViewSet, basename='user')
+route.register(r'userverification/', views.UserVerificationViewSet, basename='userverification')
+route.register(r'usergetdisinformations/', views.UserGetDisinformationsViewSet, basename='usergetdisinformations')
+
+
 urlpatterns = [
-    path('', include('our_site.urls')),
+    path('api/', include(route.urls)),
+    path('', include('temporarypage.urls')),
     path('command/', include('interface_command.urls')),
     path('admin/', admin.site.urls),
 ]

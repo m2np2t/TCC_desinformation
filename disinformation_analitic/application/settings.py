@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'interface_command.apps.InterfaceCommandConfig',
-    'our_site.apps.OurSiteConfig',
+    'dialogflowapi.apps.DialogflowapiConfig',
     'post_analitic.apps.PostAnaliticConfig',
     'post_inference.apps.PostInferenceConfig',
-    'social_media_extract.apps.SocialMediaExtractConfig',
     'trainning_learning.apps.TrainningLearningConfig',
     'webscraper.apps.WebscraperConfig',
+    'frontendapi.apps.FrontendapiConfig',
+    'temporarypage.apps.TemporarypageConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +85,7 @@ WSGI_APPLICATION = 'application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'desinformation_analitic',
+        'NAME': 'verifato',
         'USER': 'root',
         'PASSWORD': '#server@apsdesin6!',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
