@@ -1,4 +1,8 @@
+from ast import Return
+from http.client import responses
 from pyclbr import readmodule
+from pyexpat import model
+from urllib import response
 from attr import fields
 from django.forms import CharField
 from rest_framework import serializers
@@ -21,16 +25,27 @@ class UserGetDisinformationsSerializer(serializers.ModelSerializer):
         fields = ['user']
 
 class DisinformationSerializer(serializers.ModelSerializer):
-    #user = UserSerializer.get_fields(many=True)
+    #user = UserSerializer(Return)
     #   wuser = serializers.ALL_FIELDS
     class Meta:
         model = models.Disinformation
         fields = '__all__'
 
+class DisinformationReturnData(serializers.ModelSerializer):
+    class Meta:
+        model = models.Disinformation
+        fields = '__all__'
+        depth = 1
+
 class DisinformationGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Disinformation
         fields = ['key']
+
+class AnalisySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Analisy
+        fields = '__all__'
 
 
 

@@ -21,11 +21,10 @@ class DisinformationAdmin(admin.ModelAdmin):
                     'key', 
                     'link', 
                     'text',
-                    'type_analysis',
                     'title',
                     'user')
 
-    list_display_links = ('auto_increment_id', 'key', 'link', 'text', 'type_analysis','title','user')
+    list_display_links = ('auto_increment_id', 'key', 'link', 'text', 'title','user')
     #list_filter = ('auto_increment_id', 'key', 'user')
     list_per_page = 10
     search_fields = ('auto_increment_id', 'key', 'user')

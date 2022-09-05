@@ -9,30 +9,40 @@ from rest_framework.renderers import JSONRenderer
 from . import serializers
 from . import models
 from post_inference.analitic import treatentry
+from post_analitic import machine
 
 class DisinformationViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.DisinformationSerializer
     queryset = models.Disinformation.objects.all()
 
+    
+
+    
+
     def create(self, request, *args, **kwargs):
-        data = request.data 
+        data = request.data #Captura dados do post
 
-        #Neste momento entra o objeto que irá fazer a inferencia dos dados e análise(Os dois termos serão executados na mesma classe?) post_inference e post_analitic
-
-        data_text = data['text']
-        result = treatentry(data_text)
+        data_text = data['text']#Captura texto do json do post
+        data_choice = data['choice']#Captura escolha do metodo de ia do usuário
+        result = treatentry(data_text)#Chama classe que analisa o texto e guarda o valor da inferencia
 
         if(result == True):
+            #print(result)
+
+            #teste = machine.machine(data_text, data_choice)#Função que executa a machine learning
 
 
-
-            print(result)
+            #Processo de armazenamento do disinformation
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
-        
-            return Response("Api conectada com sucesso", status=status.HTTP_201_CREATED, headers=headers)
+
+            #Processo de deserialização dos dados desinformation do banco de dados, objetivo aninhar as informações e capturar o id
+            disinformation = models.Disinformation.objects.get(key = data['key'])
+            serial = serializers.DisinformationReturnData(disinformation)
+            
+            return Response(serial.data, status=status.HTTP_201_CREATED, headers=headers)
 
         else:
 
